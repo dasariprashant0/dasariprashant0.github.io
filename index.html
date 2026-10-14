@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prashant Dasari, frontend engineer</title>
+<meta name="description" content="Prashant Dasari is a frontend engineer at Zuddl. React, Next.js and Webflow, with a focus on performance and technical SEO.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Prashant Dasari, frontend engineer">
+<meta property="og:description" content="Pixel-perfect interfaces, and sites that load fast. React, Next.js and Webflow.">
+<meta property="og:url" content="https://dasariprashant0.github.io/">
+<meta property="og:image" content="https://dasariprashant0.github.io/assets/pagespeed.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://dasariprashant0.github.io/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23c2410c'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='Helvetica,Arial,sans-serif' font-size='38' font-weight='700' fill='%23fff'%3EP%3C/text%3E%3C/svg%3E">
+<link rel="preload" href="assets/geist.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:Geist;src:url(assets/geist.woff2) format("woff2");font-weight:400 700;font-display:swap}
+
+/* Tokens. One palette, one accent (burnt orange), one radius system:
+   pills for buttons and tags, 14px for images and cards. */
+:root{
+  --bg:#fafafa;--bg-2:#f3f3f2;--fg:#18181b;--fg-2:#55555e;--line:#e4e4e7;
+  --accent:#c2410c;--btn-bg:#18181b;--btn-fg:#fafafa;--shadow:24 24 27;
+  --radius:14px;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#0f0f10;--bg-2:#17171a;--fg:#f4f4f5;--fg-2:#a1a1aa;--line:#27272a;
+        --accent:#fb923c;--btn-bg:#f4f4f5;--btn-fg:#0f0f10;--shadow:0 0 0}
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 1rem/1.6 Geist,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration-color:var(--line);text-underline-offset:.2em}
+a:hover{text-decoration-color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+h1,h2,h3{margin:0;letter-spacing:-.02em;line-height:1.1}
+h2{font-size:clamp(1.75rem,3vw,2.25rem);margin-bottom:clamp(1.5rem,3vw,2.5rem)}
+h3{font-size:1.125rem;font-weight:600}
+p{margin:0}
+ul{margin:0;padding:0;list-style:none}
+
+.wrap{max-width:1120px;margin-inline:auto;padding-inline:clamp(16px,4vw,40px)}
+section{padding-block:clamp(56px,9vw,112px)}
+.skip{position:absolute;left:16px;top:-48px;padding:8px 14px;background:var(--btn-bg);color:var(--btn-fg);border-radius:999px;z-index:10}
+.skip:focus{top:12px}
+
+/* Nav: one line, 64px */
+header{height:64px;display:flex;align-items:center}
+header .wrap{display:flex;align-items:center;justify-content:space-between;width:100%}
+.brand{font-weight:600;text-decoration:none}
+nav ul{display:flex;gap:clamp(16px,3vw,32px)}
+nav a{text-decoration:none;color:var(--fg-2);font-size:.95rem}
+nav a:hover{color:var(--fg)}
+@media (max-width:600px){nav li:not(:last-child){display:none}}
+
+/* Hero: asymmetric split, real screenshot on the right */
+.hero{padding-top:clamp(32px,6vw,72px);display:grid;gap:clamp(32px,5vw,64px);align-items:center}
+@media (min-width:900px){.hero{grid-template-columns:7fr 5fr}}
+.hero h1{font-size:clamp(2.25rem,4.2vw,2.9rem)}
+.hero p{margin-top:1.25rem;font-size:1.125rem;color:var(--fg-2);max-width:34ch}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:2rem}
+.btn{display:inline-flex;align-items:center;white-space:nowrap;padding:12px 22px;border-radius:999px;font-weight:500;text-decoration:none;border:1px solid var(--line);transition:transform .15s,background .2s,border-color .2s}
+.btn:active{transform:scale(.98)}
+.btn-primary{background:var(--btn-bg);color:var(--btn-fg);border-color:var(--btn-bg)}
+.btn-secondary:hover{border-color:var(--fg)}
+.hero-art img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:left top;border-radius:var(--radius);border:1px solid var(--line);box-shadow:0 30px 60px -24px rgb(var(--shadow)/.35)}
+
+/* Work: 2x2 cards with screenshots, then a plain 2-column list */
+.cards{display:grid;gap:clamp(20px,3vw,32px)}
+@media (min-width:720px){.cards{grid-template-columns:1fr 1fr}}
+.card{display:block;text-decoration:none;border-radius:var(--radius);transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.card figure{margin:0;overflow:hidden;border-radius:var(--radius);border:1px solid var(--line);background:var(--bg-2)}
+.card img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.card h3{margin-top:1rem;display:flex;justify-content:space-between;gap:12px}
+.card h3 span{font-weight:400;color:var(--fg-2);font-size:.95rem;flex:none}
+.card p{margin-top:.4rem;color:var(--fg-2);font-size:.95rem}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:.9rem}
+.tags li{font-size:.8rem;padding:4px 10px;border:1px solid var(--line);border-radius:999px;color:var(--fg-2)}
+.more{margin-top:clamp(40px,6vw,64px);display:grid;gap:28px 40px}
+@media (min-width:720px){.more{grid-template-columns:1fr 1fr}}
+.more h3{font-size:1rem}
+.more p{color:var(--fg-2);font-size:.95rem;margin-top:.25rem}
+.aside{margin-top:clamp(32px,5vw,48px);color:var(--fg-2)}
+
+/* Experience: dates left, content right */
+.timeline{display:grid;gap:36px}
+.role{display:grid;gap:8px 32px}
+@media (min-width:720px){.role{grid-template-columns:160px 1fr}}
+.when{color:var(--fg-2);font-size:.95rem;padding-top:2px}
+.role h3 small{display:block;font-weight:400;color:var(--fg-2);font-size:.95rem;margin-top:2px}
+.role ul{margin-top:.75rem;display:grid;gap:.5rem;color:var(--fg-2)}
+.role li{padding-left:1.1em;position:relative}
+.role li::before{content:"";position:absolute;left:0;top:.7em;width:.45em;height:1px;background:var(--accent)}
+
+/* About */
+.about{max-width:62ch}
+.about p+p{margin-top:1rem}
+.tools{margin-top:2rem;display:flex;flex-wrap:wrap;gap:8px}
+.tools li{padding:6px 14px;border-radius:999px;background:var(--bg-2);font-size:.9rem}
+
+/* Contact and footer */
+.contact{border-top:1px solid var(--line)}
+.contact h2{font-size:clamp(2.25rem,5vw,3.5rem);margin-bottom:1rem}
+.contact p{color:var(--fg-2);max-width:40ch;font-size:1.125rem}
+.links{display:flex;flex-wrap:wrap;gap:12px 24px;margin-top:1.5rem}
+footer{padding:32px 0 40px;color:var(--fg-2);font-size:.9rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px}
+
+/* Motion: entry cascade on the hero, scroll reveal below, hover lift on cards.
+   All of it collapses to static under reduced motion. */
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:no-preference){
+  .hero>*{animation:rise .8s cubic-bezier(.16,1,.3,1) both}
+  .hero-art{animation-delay:.12s}
+  .card:hover{transform:translateY(-3px)}
+  .card:hover img{transform:scale(1.025)}
+  @supports (animation-timeline:view()){
+    .reveal{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 35%}
+  }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="#">Prashant Dasari</a>
+    <nav aria-label="Sections">
+      <ul>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="wrap hero" aria-labelledby="intro">
+    <div class="hero-copy">
+      <h1 id="intro">Pixel-perfect interfaces, and sites that load fast.</h1>
+      <p>I'm Prashant Dasari, a frontend engineer at Zuddl. React, Next.js and Webflow, previously at SurveySparrow.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#work">See my work</a>
+        <a class="btn btn-secondary" href="mailto:dasariprashant0@gmail.com">Email me</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <img src="assets/pagespeed.jpg" alt="PageSpeed Auditor, a dark dashboard that scores every page of a site, with a bar chart of page scores from poor to good" fetchpriority="high">
+    </div>
+  </section>
+
+  <section id="work" class="wrap reveal" aria-labelledby="work-h">
+    <h2 id="work-h">Selected work</h2>
+    <div class="cards">
+      <a class="card" href="https://www.thrivesparrow.com" target="_blank" rel="noopener">
+        <figure><img src="assets/thrivesparrow.jpg" alt="ThriveSparrow marketing website homepage" loading="lazy"></figure>
+        <h3>ThriveSparrow website <span>2024 to 2026</span></h3>
+        <p>Owned the Webflow marketing site end to end. Cut the CSS bundle by 45%, got Core Web Vitals to Good on every key page, and automated 500+ programmatic SEO pages.</p>
+        <ul class="tags"><li>Webflow</li><li>CMS</li><li>Technical SEO</li></ul>
+      </a>
+      <a class="card" href="https://thrivesparrow.com/generate-okr-templates" target="_blank" rel="noopener">
+        <figure><img src="assets/okr.jpg" alt="The OKR Generator tool page on thrivesparrow.com" loading="lazy"></figure>
+        <h3>OKR Generator <span>2024</span></h3>
+        <p>A free OKR-building tool on Webflow CMS, built for organic search and Core Web Vitals. One of the highest-traffic pages on the site.</p>
+        <ul class="tags"><li>Webflow</li><li>SEO</li><li>Figma</li></ul>
+      </a>
+      <a class="card" href="https://github.com/dasariprashant0/pagespeed-auditor" target="_blank" rel="noopener">
+        <figure><img src="assets/pagespeed.jpg" alt="PageSpeed Auditor sign-in page with a chart of page scores" loading="lazy"></figure>
+        <h3>PageSpeed Auditor <span>2026</span></h3>
+        <p>Runs Google PageSpeed Insights on every page of a site, mobile and desktop, on a schedule, and keeps the history in a dashboard.</p>
+        <ul class="tags"><li>Next.js</li><li>TypeScript</li><li>Vercel</li></ul>
+      </a>
+      <a class="card" href="https://dasariprashant0.github.io/gloamlog/" target="_blank" rel="noopener">
+        <figure><img src="assets/gloamlog.jpg" alt="Gloamlog website, a work journal app for macOS" loading="lazy"></figure>
+        <h3>Gloamlog <span>2026</span></h3>
+        <p>A free, open-source Mac work journal. One markdown file a day, which Claude Code and Git can write for you. Native Swift, installed with Homebrew.</p>
+        <ul class="tags"><li>Swift</li><li>macOS</li><li>Open source</li></ul>
+      </a>
+    </div>
+
+    <ul class="more">
+      <li>
+        <h3><a href="https://www.thrivesparrow.com" target="_blank" rel="noopener">Nominations module, ThriveSparrow</a></h3>
+        <p>Product UI for creating, reviewing and approving employee nominations. React, TypeScript, React Query.</p>
+      </li>
+      <li>
+        <h3><a href="https://3-d-jiotto-caspita-f1-website.vercel.app" target="_blank" rel="noopener">Jiotto Caspita F1</a></h3>
+        <p>A 3D car showcase in plain HTML, CSS, JavaScript and GSAP.</p>
+      </li>
+      <li>
+        <h3><a href="https://github.com/dasariprashant0/React-Realtor-App" target="_blank" rel="noopener">Realtor app</a></h3>
+        <p>Real-estate listings with search and filters. React, Tailwind CSS, Firebase.</p>
+      </li>
+      <li>
+        <h3>Gallardoy Gonzalez</h3>
+        <p>First freelance build: a responsive Webflow site, from Figma to live in under two weeks.</p>
+      </li>
+    </ul>
+    <p class="aside">Longer write-ups of each project are on <a href="https://prashant-dasari.vercel.app/work" target="_blank" rel="noopener">my case studies page</a>, and the rest is on <a href="https://github.com/dasariprashant0" target="_blank" rel="noopener">GitHub</a>.</p>
+  </section>
+
+  <section id="experience" class="wrap reveal" aria-labelledby="exp-h">
+    <h2 id="exp-h">Experience</h2>
+    <div class="timeline">
+      <article class="role">
+        <p class="when">July 2026 to now</p>
+        <div>
+          <h3>Frontend Engineer <small>Zuddl, remote</small></h3>
+          <ul>
+            <li>Owns the marketing website: Webflow, performance, analytics and technical SEO.</li>
+          </ul>
+        </div>
+      </article>
+      <article class="role">
+        <p class="when">March 2024 to June 2026</p>
+        <div>
+          <h3>Member of Technical Staff <small>SurveySparrow, Chennai</small></h3>
+          <ul>
+            <li>Joined as a Webflow developer owning the marketing site: 45% smaller CSS bundle, Core Web Vitals to Good, 500+ programmatic SEO pages from Google Sheets.</li>
+            <li>Moved into product in 2025. Built the Nominations module and shipped features across Awards and One-on-Ones, while still running the website.</li>
+            <li>Picked up backend in 2026: NestJS, PostgreSQL, Redis and Elasticsearch. Promoted to Member of Technical Staff.</li>
+          </ul>
+        </div>
+      </article>
+      <article class="role">
+        <p class="when">2019 to 2023</p>
+        <div>
+          <h3>B.Tech, Computer Science and Engineering <small>Parul University, Vadodara</small></h3>
+          <ul>
+            <li>Webflow Partner and Webflow CMS certified.</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="about" class="wrap reveal" aria-labelledby="about-h">
+    <h2 id="about-h">About</h2>
+    <div class="about">
+      <p>I care about the details: the bundle that is 10 KB too heavy, the easing curve that feels mechanical, the empty state nobody thought about. Most of my work sits between design and engineering, turning Figma files into interfaces that hold up in production and marketing sites that actually get found.</p>
+      <p>Off the clock I play table tennis and foosball, follow football, and read more light novels than is probably healthy.</p>
+      <ul class="tools" aria-label="Tools I use">
+        <li>React</li><li>Next.js</li><li>TypeScript</li><li>JavaScript</li><li>Tailwind CSS</li><li>Webflow</li><li>GSAP</li><li>Figma</li><li>React Query</li><li>Technical SEO</li><li>Firebase</li><li>PostgreSQL</li><li>Git</li><li>Swift</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contact" class="contact reveal" aria-labelledby="contact-h">
+    <div class="wrap">
+      <h2 id="contact-h">Let's talk.</h2>
+      <p>Got a project in mind, or want to talk shop? Email is the fastest way to reach me.</p>
+      <div class="cta"><a class="btn btn-primary" href="mailto:dasariprashant0@gmail.com">Email me</a></div>
+      <ul class="links">
+        <li><a href="https://www.linkedin.com/in/prashant-dasari-8788b7199" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://github.com/dasariprashant0" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://prashant-dasari.vercel.app" target="_blank" rel="noopener">Case studies</a></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Prashant Dasari, 2026</span>
+    <span>Plain HTML and CSS, no build step. <a href="https://github.com/dasariprashant0/dasariprashant0.github.io" target="_blank" rel="noopener">Source</a></span>
+  </div>
+</footer>
+</body>
+</html>
