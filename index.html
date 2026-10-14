@@ -10,8 +10,8 @@
 <meta property="og:title" content="Prashant Dasari, frontend engineer">
 <meta property="og:description" content="Pixel-perfect interfaces, and sites that load fast. React, Next.js and Webflow.">
 <meta property="og:url" content="https://dasariprashant0.github.io/">
-<meta property="og:image" content="https://dasariprashant0.github.io/assets/pagespeed.jpg">
-<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="https://dasariprashant0.github.io/assets/prashant.jpg">
+<meta name="twitter:card" content="summary">
 <link rel="canonical" href="https://dasariprashant0.github.io/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23c2410c'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='Helvetica,Arial,sans-serif' font-size='38' font-weight='700' fill='%23fff'%3EP%3C/text%3E%3C/svg%3E">
 <link rel="preload" href="assets/geist.woff2" as="font" type="font/woff2" crossorigin>
@@ -67,7 +67,9 @@ nav a:hover{color:var(--fg)}
 .btn:active{transform:scale(.98)}
 .btn-primary{background:var(--btn-bg);color:var(--btn-fg);border-color:var(--btn-bg)}
 .btn-secondary:hover{border-color:var(--fg)}
-.hero-art img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:left top;border-radius:var(--radius);border:1px solid var(--line);box-shadow:0 30px 60px -24px rgb(var(--shadow)/.35)}
+.hero-art{display:flex;justify-content:center}
+.hero-art img{width:100%;max-width:420px;height:auto;aspect-ratio:3/4;object-fit:cover;object-position:center top;border-radius:var(--radius);box-shadow:0 30px 60px -24px rgb(var(--shadow)/.35)}
+@media (min-width:900px){.hero-art{justify-content:flex-end}}
 
 /* Work: 2x2 cards with screenshots, then a plain 2-column list */
 .cards{display:grid;gap:clamp(20px,3vw,32px)}
@@ -152,7 +154,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 2
       </div>
     </div>
     <div class="hero-art">
-      <img src="assets/pagespeed.jpg" alt="PageSpeed Auditor, a dark dashboard that scores every page of a site, with a bar chart of page scores from poor to good" fetchpriority="high">
+      <img src="assets/prashant.jpg" alt="Prashant Dasari" width="900" height="1200" fetchpriority="high">
     </div>
   </section>
 
