@@ -88,6 +88,30 @@ nav a:hover{color:var(--fg)}
 .more p{color:var(--fg-2);font-size:.95rem;margin-top:.25rem}
 .aside{margin-top:clamp(32px,5vw,48px);color:var(--fg-2)}
 
+/* GitHub activity: one-hue calendar heatmap, stat tiles, language bar.
+   Data comes from assets/github.json, refreshed daily by the repo's workflow. */
+.gh-sub{color:var(--fg-2);margin:-1rem 0 1.25rem}
+.cal-wrap{overflow-x:auto;padding-bottom:4px}
+.cal{display:grid;grid-template-rows:repeat(7,1fr);grid-auto-flow:column;grid-auto-columns:1fr;gap:3px;min-width:640px}
+.cal i,.gh-legend i{display:block;aspect-ratio:1;border-radius:2px;background:var(--bg-2)}
+.cal .pad{visibility:hidden}
+i.l1{background:color-mix(in srgb,var(--accent) 35%,var(--bg-2))}
+i.l2{background:color-mix(in srgb,var(--accent) 60%,var(--bg-2))}
+i.l3{background:color-mix(in srgb,var(--accent) 82%,var(--bg-2))}
+i.l4{background:var(--accent)}
+.gh-legend{display:flex;align-items:center;justify-content:flex-end;gap:3px;margin-top:8px;font-size:.8rem;color:var(--fg-2)}
+.gh-legend i{width:11px}
+.gh-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:24px 32px;margin-top:clamp(32px,5vw,48px)}
+@media (min-width:720px){.gh-stats{grid-template-columns:repeat(3,1fr)}}
+.gh-stats b{display:block;font-size:2rem;font-weight:600;letter-spacing:-.02em;line-height:1.1;font-variant-numeric:tabular-nums}
+.gh-stats span{color:var(--fg-2);font-size:.9rem}
+.langs{margin-top:clamp(32px,5vw,48px)}
+.langs .bar{display:flex;gap:2px;height:10px;border-radius:999px;overflow:hidden}
+.langs ul{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:12px;font-size:.9rem}
+.langs li{display:flex;align-items:center;gap:6px}
+.langs li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c)}
+.langs li span{color:var(--fg-2)}
+
 /* Experience: dates left, content right */
 .timeline{display:grid;gap:36px}
 .role{display:grid;gap:8px 32px}
@@ -208,6 +232,16 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 2
     <p class="aside">Longer write-ups of each project are on <a href="https://prashant-dasari.vercel.app/work" target="_blank" rel="noopener">my case studies page</a>, and the rest is on <a href="https://github.com/dasariprashant0" target="_blank" rel="noopener">GitHub</a>.</p>
   </section>
 
+  <section id="github" class="wrap reveal" aria-labelledby="gh-h" hidden>
+    <h2 id="gh-h">GitHub activity</h2>
+    <p class="gh-sub"><span id="gh-total"></span> contributions in the last year</p>
+    <div class="cal-wrap"><div class="cal" id="gh-cal" role="img" aria-label="Daily contribution calendar for the last year"></div></div>
+    <div class="gh-legend" aria-hidden="true">Less <i></i><i class="l1"></i><i class="l2"></i><i class="l3"></i><i class="l4"></i> More</div>
+    <div class="gh-stats" id="gh-stats"></div>
+    <div class="langs" id="gh-langs" aria-label="Languages by bytes of code in public repos"><div class="bar"></div><ul></ul></div>
+    <p class="aside">Public activity, refreshed daily from GitHub by this site's own workflow. Last update <span id="gh-updated"></span>. <a href="https://github.com/dasariprashant0" target="_blank" rel="noopener">See the profile</a>.</p>
+  </section>
+
   <section id="experience" class="wrap reveal" aria-labelledby="exp-h">
     <h2 id="exp-h">Experience</h2>
     <div class="timeline">
@@ -274,5 +308,46 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 2
     <span>Plain HTML and CSS, no build step. <a href="https://github.com/dasariprashant0/dasariprashant0.github.io" target="_blank" rel="noopener">Source</a></span>
   </div>
 </footer>
+
+<script type="module">
+// Draws the GitHub section from assets/github.json. If the file is missing, the section stays hidden.
+const r = await fetch("assets/github.json");
+if (r.ok) {
+  const g = await r.json();
+  const $ = (id) => document.getElementById(id);
+  const n = (v) => v.toLocaleString("en");
+
+  // Levels are quartiles of the non-zero days, the same idea GitHub uses, so light weeks still show.
+  const active = g.weeks.flat().filter(Boolean).sort((a, b) => a - b);
+  const q = (p) => active[Math.min(active.length - 1, Math.floor(active.length * p))] ?? 1;
+  const level = (c) => (c === 0 ? 0 : c <= q(0.25) ? 1 : c <= q(0.5) ? 2 : c <= q(0.75) ? 3 : 4);
+  const d0 = new Date(g.start + "T00:00:00");
+  let i = 0, cells = '<i class="pad"></i>'.repeat(d0.getDay());
+  for (const week of g.weeks) for (const c of week) {
+    const d = new Date(d0); d.setDate(d0.getDate() + i++);
+    const when = d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+    cells += `<i class="l${level(c)}" title="${c} contribution${c === 1 ? "" : "s"} on ${when}"></i>`;
+  }
+  $("gh-cal").innerHTML = cells;
+
+  const tiles = [
+    [g.contributionsYear, "Contributions in the last year"],
+    [g.commitsYear, "Commits in the last year"],
+    [g.currentStreak, "Current streak, days"],
+    [g.longestStreak, "Longest streak, days"],
+    [g.repos, "Public repositories"],
+    [g.stars, "Stars"],
+  ];
+  $("gh-stats").innerHTML = tiles.filter(([v]) => v != null).map(([v, l]) => `<div><b>${n(v)}</b><span>${l}</span></div>`).join("");
+
+  const color = (l) => l.color || "var(--fg-2)";
+  $("gh-langs").querySelector(".bar").innerHTML = g.languages.map((l) => `<span style="flex:${l.pct};background:${color(l)}"></span>`).join("");
+  $("gh-langs").querySelector("ul").innerHTML = g.languages.map((l) => `<li style="--c:${color(l)}">${l.name} <span>${l.pct}%</span></li>`).join("");
+
+  $("gh-total").textContent = n(g.contributionsYear);
+  $("gh-updated").textContent = g.updated;
+  $("github").hidden = false;
+}
+</script>
 </body>
 </html>
